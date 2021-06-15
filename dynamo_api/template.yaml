@@ -47,11 +47,11 @@ Resources:
             Path: "/movies/{movie_id}"
             Method: PUT
   
-  RoomsPerDay:
+  GetRoomsPerDay:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: roomsPerDay
-      Handler: movie.roomsPerDay
+      FunctionName: getRoomsPerDay
+      Handler: movie.getRoomsPerDay
       Runtime: python3.6
       CodeUri: package/
       Policies:
@@ -67,6 +67,69 @@ Resources:
             RestApiId: !Ref MyAPI
             Path: "/roomsPerDay/movie/{movie_id}"
             Method: GET
+            
+  PutRoomsPerDay:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putRoomsPerDay
+      Handler: movie.putRoomsPerDay
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref MoviesTable
+      Environment:
+        Variables:
+          MOVIES_TABLE: !Ref MoviesTable
+      Events:
+        GetMovies:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/roomsPerDay/movie/{movie_id}"
+            Method: PUT
+            
+  GetMovieRoom:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getMovieRoom
+      Handler: movie.getMovieRoom
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MoviesTable
+      Environment:
+        Variables:
+          MOVIES_TABLE: !Ref MoviesTable
+      Events:
+        GetMovies:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/movies/{movie_id}/room/{room_id}"
+            Method: GET
+            
+  PutMovieRoom:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putMovieRoom
+      Handler: movie.putMovieRoom
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref MoviesTable
+      Environment:
+        Variables:
+          MOVIES_TABLE: !Ref MoviesTable
+      Events:
+        GetMovies:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/movies/{movie_id}/room/{room_id}"
+            Method: PUT
             
   GetRoom:
     Type: AWS::Serverless::Function
@@ -110,11 +173,11 @@ Resources:
             Path: "/room/{room_id}"
             Method: PUT
             
-  GetMovie:
+  GetPerson:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: getMovie
-      Handler: movie.getMovie
+      FunctionName: getPerson
+      Handler: movie.getPerson
       Runtime: python3.6
       CodeUri: package/
       Policies:
@@ -128,14 +191,14 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyAPI
-            Path: "/movies/{movie_id}"
+            Path: "/person/{person_id}"
             Method: GET
 
-  PutMovie:
+  PutPerson:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: putMovie
-      Handler: movie.putMovie
+      FunctionName: putPerson
+      Handler: movie.putPerson
       Runtime: python3.6
       CodeUri: package/
       Policies:
@@ -149,7 +212,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyAPI
-            Path: "/movies/{movie_id}"
+            Path: "/person/{person_id}"
             Method: PUT
   
   MyAPI:
