@@ -67,6 +67,90 @@ Resources:
             RestApiId: !Ref MyAPI
             Path: "/roomsPerDay/movie/{movie_id}"
             Method: GET
+            
+  GetRoom:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getRoom
+      Handler: movie.getRoom
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MoviesTable
+      Environment:
+        Variables:
+          MOVIES_TABLE: !Ref MoviesTable
+      Events:
+        GetMovies:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/room/{room_id}"
+            Method: GET
+
+  PutRoom:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putRoom
+      Handler: movie.putRoom
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref MoviesTable
+      Environment:
+        Variables:
+          MOVIES_TABLE: !Ref MoviesTable
+      Events:
+        GetMovies:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/room/{room_id}"
+            Method: PUT
+            
+  GetMovie:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getMovie
+      Handler: movie.getMovie
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MoviesTable
+      Environment:
+        Variables:
+          MOVIES_TABLE: !Ref MoviesTable
+      Events:
+        GetMovies:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/movies/{movie_id}"
+            Method: GET
+
+  PutMovie:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putMovie
+      Handler: movie.putMovie
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref MoviesTable
+      Environment:
+        Variables:
+          MOVIES_TABLE: !Ref MoviesTable
+      Events:
+        GetMovies:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/movies/{movie_id}"
+            Method: PUT
   
   MyAPI:
     Type: AWS::Serverless::Api
