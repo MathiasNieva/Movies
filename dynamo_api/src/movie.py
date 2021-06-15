@@ -56,7 +56,7 @@ def putMovie(event, context):
         'body': json.dumps('Hello from Lambda!')
     }
 
-def roomsPerDay(event, context):
+def getRoomsPerDay(event, context):
     print(json.dumps({"running": True}))
     print(json.dumps(event))
     
@@ -76,3 +76,178 @@ def roomsPerDay(event, context):
         'statusCode': 200,
         'body': json.dumps("success")
     }
+    
+    
+def putRoomsPerDay(event, context):
+    print(json.dumps({"running": True}))
+    print(json.dumps(event))
+    
+    path = event["path"] # "/user/123"
+    array_path = path.split("/") # ["", "user", "123"]
+    user_id = array_path[-1]
+    
+    body = event["body"] #"{\n\t\"name\": \"Jack\",\n\t\"last_name\": \"Click\",\n\t\"age\": 21\n}"
+    body_object = json.loads(body)
+    
+    
+    # table.put_item(
+    #     Item={
+    #         'pk': user_id,
+    #         'sk': 'age',
+    #         'name': body_object['name'],
+    #         'last_name': body_object['last_name'],
+    #         'age': body_object['age']
+    #     }
+    # )
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+    
+    
+def getMovieRoom(event, context):
+    print(json.dumps({"running": True}))
+    print(json.dumps(event))
+    
+    path = event["path"] # "/user/123"
+    array_path = path.split("/") # ["", "user", "123"]
+    user_id = array_path[-1]
+    
+    # response = table.get_item(
+    #     Key={
+    #         'pk': user_id,
+    #         'sk': 'age'
+    #     }
+    # )
+    # item = response['Item']
+    # print(item)
+    return {
+        'statusCode': 200,
+        'body': json.dumps("success")
+    }
+    
+def putMovieRoom(event, context):
+    print(json.dumps({"running": True}))
+    print(json.dumps(event))
+    
+    path = event["path"] # "/user/123"
+    array_path = path.split("/") # ["", "user", "123"]
+    user_id = array_path[-1]
+    
+    body = event["body"] #"{\n\t\"name\": \"Jack\",\n\t\"last_name\": \"Click\",\n\t\"age\": 21\n}"
+    body_object = json.loads(body)
+    
+    
+    # table.put_item(
+    #     Item={
+    #         'pk': user_id,
+    #         'sk': 'age',
+    #         'name': body_object['name'],
+    #         'last_name': body_object['last_name'],
+    #         'age': body_object['age']
+    #     }
+    # )
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+    
+def getRoom(event, context):
+    print(json.dumps({"running": True}))
+    print(json.dumps(event))
+    
+    path = event["path"] # "/user/123"
+    array_path = path.split("/") # ["", "user", "123"]
+    user_id = array_path[-1]
+    
+    # response = table.get_item(
+    #     Key={
+    #         'pk': user_id,
+    #         'sk': 'age'
+    #     }
+    # )
+    # item = response['Item']
+    # print(item)
+    return {
+        'statusCode': 200,
+        'body': json.dumps("success")
+    }
+    
+def putRoom(event, context):
+    print(json.dumps({"running": True}))
+    print(json.dumps(event))
+    
+    path = event["path"] # "/user/123"
+    array_path = path.split("/") # ["", "user", "123"]
+    user_id = array_path[-1]
+    
+    body = event["body"] #"{\n\t\"name\": \"Jack\",\n\t\"last_name\": \"Click\",\n\t\"age\": 21\n}"
+    body_object = json.loads(body)
+    
+    
+    # table.put_item(
+    #     Item={
+    #         'pk': user_id,
+    #         'sk': 'age',
+    #         'name': body_object['name'],
+    #         'last_name': body_object['last_name'],
+    #         'age': body_object['age']
+    #     }
+    # )
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+    
+def getPerson(event, context):
+    print(json.dumps({"running": True}))
+    print(json.dumps(event))
+    
+    path = event["path"] # "/user/123"
+    array_path = path.split("/") # ["", "user", "123"]
+    user_id = array_path[-1]
+    
+    # response = table.get_item(
+    #     Key={
+    #         'pk': user_id,
+    #         'sk': 'age'
+    #     }
+    # )
+    # item = response['Item']
+    # print(item)
+    return {
+        'statusCode': 200,
+        'body': json.dumps("success")
+    }
+    
+def putPerson(event, context):
+    print(json.dumps({"running": True}))
+    print(json.dumps(event))
+    
+    path = event["path"] # "/user/123"
+    array_path = path.split("/") # ["", "user", "123"]
+    user_id = array_path[-1]
+    
+    body = event["body"] #"{\n\t\"name\": \"Jack\",\n\t\"last_name\": \"Click\",\n\t\"age\": 21\n}"
+    body_object = json.loads(body)
+    
+    
+    # table.put_item(
+    #     Item={
+    #         'pk': user_id,
+    #         'sk': 'age',
+    #         'name': body_object['name'],
+    #         'last_name': body_object['last_name'],
+    #         'age': body_object['age']
+    #     }
+    # )
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+    
+    
