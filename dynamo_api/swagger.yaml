@@ -107,6 +107,8 @@ paths:
             schema:
               type: object
               properties:
+                person_id:
+                  type: string
       parameters:
         - name: movie_id
           in: path
@@ -126,7 +128,7 @@ paths:
         - name: room_id
           in: path
           required: true
-          description: 
+          description: Room id
       x-amazon-apigateway-integration:
         type: "aws_proxy"
         uri:
